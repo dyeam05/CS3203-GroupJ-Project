@@ -1,0 +1,3 @@
+To Do:
+- Everyone needs to join github repo as collaborator
+- Decide languages, environments, and frameworks
