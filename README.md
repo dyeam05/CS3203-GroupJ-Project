@@ -12,15 +12,15 @@ The Smart Study Planner is a tool created to make studying more structured and e
 
 ### Dependencies 
 
-React Naive CLI 
+React Naive CLI (https://reactnative.dev/docs/getting-started)
 
-Android Studio 
+Android Studio (https://developer.android.com/studio)
 
 Xcode 
 
-Node.js (comes with npm) or Yarn 
+Node.js (comes with npm) or Yarn (https://nodejs.org/en/download)
 
- 
+Expo (https://expo.dev)
 
 ### Installing 
 
@@ -34,11 +34,10 @@ For Android install - Android Studio
 
 For IOS install – Xcode 
 
- 
 
 Step 1: Clone the Repository  
 
-git clone PUT GIT REPO HERE 
+git clone https://github.com/dyeam05/CS3203-GroupJ-Project
 
 Step 2: Install dependencies 
 
