@@ -9,7 +9,7 @@ A productivity app created to help students organize assignments, homework, and 
 The Smart Study Planner is a tool created to make studying more structured and effective. Users can create tasks, set deadlines, and receive adaptive reminders that adjust based on progress. By integrating features like a dynamic calendar, subject categorization, and smart recommendations, the app aims to reduce procrastination and help learners stay on top of their goals. This project is developed as part of CS 3203 (Fall 2025), with a focus on practical software engineering principles and teamwork. 
 
 ## Tech Stack
-Frontend: React Native, Expo
+Frontend: React Native, Expo  
 Backend: SQL, Azure
 
 ## Getting Started 
