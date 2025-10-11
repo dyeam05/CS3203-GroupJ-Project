@@ -1,16 +1,15 @@
-import { ThemedText } from "@/app-example/components/themed-text";
-import { Text, View } from "react-native";
+import React from 'react';
+import { View } from "react-native";
+import { Calendar } from 'react-native-calendars';
 
-export default function Calendar() {
+export default function CalendarScreen() {
+  const today = new Date().toISOString().split('T')[0];
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-    <Text>Calendar</Text>
+    <View>
+      <Calendar
+      current = {today}
+      onDayPress = {(day) => {console.log (day)}}
+      />
     </View>
   );
 }
