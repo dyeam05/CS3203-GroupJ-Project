@@ -50,7 +50,16 @@ npm install or yarn install
 Step 3: Start Metro bundler 
 
 npx react-native start 
+Step 4: Installing Calendar package
 
+Go to the terminal and
+If using npm:
+$ npm install --save react-native-calendars
+
+If using Yarn:
+$ yarn add react-native-calendars
+
+RN (React Native) Calendars is implemented in JavaScript, so no native module is required. 
 ### Executing Program 
 
 The build process slightly differs for IOS and Android. 
