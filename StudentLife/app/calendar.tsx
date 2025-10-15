@@ -8,10 +8,10 @@ export default function CalendarScreen() {
 
   const [selected, setSelected] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
+  const [addEventVisible, setAddEventVisible] = useState(false);
   const [eventName, setEventText] = useState('');
   const [eventList, setEventList] = useState<string[]>([]);
   const [eventDesc, setEventDesc] = useState('');
-  const [eventDate, setEventDate] = useState('');
   const [eventDescList, setDescList] = useState<string[]>([]);
 
   return (
@@ -21,6 +21,7 @@ export default function CalendarScreen() {
       onDayPress = {(day) => {
         console.log (day);
         setSelected(day.dateString);
+        setAddEventVisible(true);
       }}
 
       markedDates={{
@@ -28,9 +29,11 @@ export default function CalendarScreen() {
       }}
       />
       <View style={styles.eventBtn}>
-        <Button title="+ Add Event"  onPress={() => {
-          setModalVisible(true);
-        }}/>
+        
+        <Button title="+ Add Event" 
+          onPress={() => {setModalVisible(true);}}
+          
+          />
       </View>
       
 
@@ -61,7 +64,6 @@ export default function CalendarScreen() {
 
               setEventText('');
               setEventDesc('');
-              setEventDate('');
               console.log(eventList);
               console.log(eventDescList);
             }}/>
