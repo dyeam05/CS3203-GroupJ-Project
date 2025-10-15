@@ -43,7 +43,6 @@ export default function CalendarScreen() {
             <Text>Event Info:</Text>
             <TextInput placeholder='Event Name' value={eventName} onChangeText={setEventText} style={styles.input}></TextInput>
             <TextInput placeholder='Event Description' value={eventDesc} onChangeText={setEventDesc} style={styles.input}></TextInput>
-            <TextInput placeholder='Date (year-month-day format)' value={eventDate} onChangeText={setEventDate} style={styles.input}></TextInput>
             <Button title='save' onPress={() => {
               setModalVisible(false);
               console.log('Event name: ', eventName); 
@@ -65,7 +64,6 @@ export default function CalendarScreen() {
               setEventDate('');
               console.log(eventList);
               console.log(eventDescList);
-              console.log(eventDate);
             }}/>
             <Button title = "close" onPress={() => {
               setEventText('');
