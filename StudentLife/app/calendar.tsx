@@ -19,7 +19,6 @@ export default function CalendarScreen() {
       current = {today}
       onDayPress = {(day) => {
         console.log (day);
-        setModalVisible(true);
         setSelected(day.dateString);
       }}
 
@@ -27,6 +26,13 @@ export default function CalendarScreen() {
         [selected]: {selected: true, disableTouchEvent: true}
       }}
       />
+      <View style={styles.eventBtn}>
+        <Button title="+ Add Event"  onPress={() => {
+          setModalVisible(true);
+        }}/>
+      </View>
+      
+
       <Modal
         visible = {modalVisible}
         animationType='slide'    
@@ -88,5 +94,11 @@ const styles = StyleSheet.create ({
     borderWidth: 2,
     margin: 5,
     padding: 5
+  },
+
+  eventBtn: {
+    padding:10,
+    margin:10,
+    textAlign: 'center',
   }
 });
