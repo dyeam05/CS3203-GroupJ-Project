@@ -11,6 +11,7 @@ export default function CalendarScreen() {
   const [eventName, setEventText] = useState('');
   const [eventList, setEventList] = useState<string[]>([]);
   const [eventDesc, setEventDesc] = useState('');
+  const [eventDate, setEventDate] = useState('');
   const [eventDescList, setDescList] = useState<string[]>([]);
 
   return (
@@ -39,9 +40,10 @@ export default function CalendarScreen() {
       >
         <View style={styles.Modal}>
           <View style={styles.modalContainer}>
-            <Text>This is the modal</Text>
+            <Text>Event Info:</Text>
             <TextInput placeholder='Event Name' value={eventName} onChangeText={setEventText} style={styles.input}></TextInput>
             <TextInput placeholder='Event Description' value={eventDesc} onChangeText={setEventDesc} style={styles.input}></TextInput>
+            <TextInput placeholder='Date (year-month-day format)' value={eventDate} onChangeText={setEventDate} style={styles.input}></TextInput>
             <Button title='save' onPress={() => {
               setModalVisible(false);
               console.log('Event name: ', eventName); 
@@ -60,8 +62,10 @@ export default function CalendarScreen() {
 
               setEventText('');
               setEventDesc('');
+              setEventDate('');
               console.log(eventList);
               console.log(eventDescList);
+              console.log(eventDate);
             }}/>
             <Button title = "close" onPress={() => {
               setEventText('');
@@ -79,7 +83,8 @@ export default function CalendarScreen() {
 const styles = StyleSheet.create ({
   Modal: {
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    paddingTop: 100     //This is a really stupid way to center the add event box. Work on fixing this later
   },
 
   modalContainer: {
