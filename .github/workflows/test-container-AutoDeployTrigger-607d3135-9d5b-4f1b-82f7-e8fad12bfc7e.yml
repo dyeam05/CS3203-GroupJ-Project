@@ -1,28 +1,23 @@
-name: Trigger auto deployment for test-container
+name: Auto Deploy Backend to Azure Container App
 
-# When this action will be executed
 on:
-  # Automatically trigger it when detected changes in repo
   push:
-    branches: 
-      [ main ]
+    branches: [ main ]
     paths:
-    - '**'
-    - '.github/workflows/test-container-AutoDeployTrigger-607d3135-9d5b-4f1b-82f7-e8fad12bfc7e.yml'
-
-  # Allow manual trigger 
-  workflow_dispatch:      
+      - 'Backend/**'
+      - '.github/workflows/deploy-containerapp.yml'
+  workflow_dispatch:
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    permissions: 
-      id-token: write #This is required for requesting the OIDC JWT Token
-      contents: read #Required when GH token is used to authenticate with private repo
+    permissions:
+      id-token: write   # Required for OIDC authentication
+      contents: read
 
     steps:
-      - name: Checkout to the branch
-        uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
       - name: Azure Login
         uses: azure/login@v2
@@ -31,19 +26,24 @@ jobs:
           tenant-id: ${{ secrets.TESTCONTAINER_AZURE_TENANT_ID }}
           subscription-id: ${{ secrets.TESTCONTAINER_AZURE_SUBSCRIPTION_ID }}
 
-      - name: Build and push container image to registry
-        uses: azure/container-apps-deploy-action@v2
-        with:
-          appSourcePath: ${{ github.workspace }}
-          _dockerfilePathKey_: _dockerfilePath_
-          _targetLabelKey_: _targetLabel_
-          registryUrl: 
-          registryUsername: ${{ secrets.TESTCONTAINER_REGISTRY_USERNAME }}
-          registryPassword: ${{ secrets.TESTCONTAINER_REGISTRY_PASSWORD }}
-          containerAppName: test-container
-          resourceGroup: GroupJCS3203Fall2025
-          imageToBuild: default/[parameters('containerAppName')]:${{ github.sha }}
-          _buildArgumentsKey_: |
-            _buildArgumentsValues_
+      - name: Deploy Backend to Azure Container App (no registry needed)
+        run: |
+          # Ensure containerapp extension and providers are registered
+          az extension add --name containerapp --upgrade
+          az provider register --namespace Microsoft.App
+          az provider register --namespace Microsoft.OperationalInsights
 
+          # Build and deploy directly from Backend/ source folder
+          az containerapp up \
+            --name test-container \
+            --resource-group GroupJCS3203Fall2025 \
+            --location centralus \
+            --source Backend \
+            --ingress external \
+            --target-port 3001 \
+            --environment test-container-env
 
+          # Output the public URL for verification
+          echo "Public endpoint:"
+          az containerapp show -n test-container -g GroupJCS3203Fall2025 \
+            --query properties.configuration.ingress.fqdn -o tsv
