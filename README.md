@@ -39,19 +39,19 @@ For Android install - Android Studio
 For IOS install – Xcode 
 
 
-# Step 1: Clone the Repository  
+### Step 1: Clone the Repository  
 
 git clone https://github.com/dyeam05/CS3203-GroupJ-Project
 
-# Step 2: Install dependencies 
+### Step 2: Install dependencies 
 
 npm install or yarn install 
 
-# Step 3: Start Metro bundler 
+### Step 3: Start Metro bundler 
 
 npx react-native start 
 
-# Step 4: Installing Calendar package
+### Step 4: Installing Calendar package
 
 Go to the terminal and
 
